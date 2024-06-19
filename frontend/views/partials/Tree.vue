@@ -8,7 +8,7 @@
     <section class="modal-card-body">
       <div class="tree">
         <ul class="tree-list">
-          <TreeNode :node="$store.state.tree" @selected="$emit('selected', $event) && $parent.close()" />
+          <TreeNode :node="$store.state.tree" @selected="$emit('selected', $event)" />
         </ul>
       </div>
     </section>
