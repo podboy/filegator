@@ -3,6 +3,7 @@ services:
   filegator:
     build: .
     image: filegator:latest
+    container_name: filegator
     restart: always
     ports:
       - "8080:8080"

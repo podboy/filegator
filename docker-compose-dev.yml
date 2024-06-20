@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    container_name: filegator-dev
+    privileged: true
+    user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}
     ports:
       - "8080:8080" # frontend port, see package.json
       - "8081:8081" # backend port, see package.json and .env.local

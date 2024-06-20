@@ -1,7 +1,7 @@
 #################################
 # stage builder: build and test
 #################################
-FROM php:8.3-apache-bullseye AS builder
+FROM ghcr.io/podboy/php:8.3-apache-bullseye AS builder
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
@@ -13,7 +13,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN docker-php-ext-install zip
 RUN docker-php-ext-enable zip
 
-RUN git clone https://github.com/filegator/filegator.git /var/www/filegator/
+RUN git clone https://github.com/podboy/filegator.git /var/www/filegator/
 WORKDIR "/var/www/filegator/"
 RUN cp configuration_sample.php configuration.php
 RUN composer install
@@ -30,7 +30,7 @@ RUN rm README.md couscous.yml repository/.gitignore babel.config.js cypress* .en
 #################################
 # stage production
 #################################
-FROM php:8.3-apache-bullseye
+FROM ghcr.io/podboy/php:8.3-apache-bullseye
 
 RUN apt-get update > /dev/null
 RUN apt-get install -y git libzip-dev libldap2-dev
